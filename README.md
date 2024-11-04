@@ -13,15 +13,20 @@ Le but de **SexCannalyzer** est de :
 - Classifier les plants en tant que mâles ou femelles selon les critères d'expression génétique établis.
 
 ## Données d'entrée
-- **Fichier de données transcriptomiques** : Un fichier CSV contenant les données d'expression des gènes pour différents échantillons. Le fichier doit inclure une colonne nommée `X` avec les identifiants de gènes, tels que `LOC115699937` et `LOC115696989`, qui seront automatiquement renommés en **REM16** et **FT1**.
+- **Fichier de données transcriptomiques** : Un fichier CSV contenant les données d'expression des gènes pour différents échantillons. Le fichier doit inclure une colonne nommée `X` avec les identifiants de gènes, tels que `LOC115699937` et `LOC115696989`, qui seront automatiquement renommés en **REM16** et **FT1**. Chaque colonne représente l'identifiant du génotype.
 ![Texte alternatif de l'image](images/ex_tab_csv.png)
-
-- **Format** : Le fichier d'entrée doit être au format CSV (`2_Data_RNASeq_Cannabis_Sex.csv`) avec les niveaux d'expression pour chaque échantillon dans les colonnes.
 
 ## Résultats
 Le script produit plusieurs types de sorties :
-
+- Premièrement un graphique de l'expression du gène REM16 en fonction du sexe.
 ![Texte alternatif de l'image](images/REM16.png)
+
+- Deuxièmement un graphique de l'expression du gène FT1 en fonction du sexe.
+![Texte alternatif de l'image](images/FT1.png)
+
+
+- Troisièment un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe
+![Texte alternatif de l'image](images/REM16+FT1.png)
 
 1. **Tableaux transformés** pour les gènes **REM16** et **FT1** avec leurs niveaux d'expression pour chaque échantillon et sexe.
 2. **Graphiques** montrant les niveaux d'expression de **REM16** et **FT1** en fonction du sexe des échantillons. Ces graphiques permettent de visualiser la classification des plants en mâle ou femelle.
