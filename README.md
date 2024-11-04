@@ -28,12 +28,9 @@ Le script produit plusieurs types de sorties :
 3. Un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe.
 ![Texte alternatif de l'image](images/REM16+FT1.png)
 
-1. **Tableaux transformés** pour les gènes **REM16** et **FT1** avec leurs niveaux d'expression pour chaque échantillon et sexe.
-2. **Graphiques** montrant les niveaux d'expression de **REM16** et **FT1** en fonction du sexe des échantillons. Ces graphiques permettent de visualiser la classification des plants en mâle ou femelle.
-3. **Critères d'interprétation** :
-   - **Femelle** : Si REM16 est exprimé autour de 10,5 et FT1 est peu exprimé (~6,5).
-   - **Mâle** : Si REM16 est exprimé autour de 8,75 et FT1 est exprimé.
-   - **Problème** : Si REM16 est exprimé sans que FT1 soit exprimé.
+4. Un tableau présentant le résultats d'un modèle SVM pouvant prédire le sexe en fonction des différences d'expression des deux gènes.
+
+
 
 ## Instructions
 
@@ -42,18 +39,14 @@ Le script produit plusieurs types de sorties :
 - Packages **dplyr**, **ggplot2**, et **ggpubr** (pour les visualisations).
   
 ### Étapes pour exécuter le script
-1. **Configuration du répertoire de travail** : Placez le fichier `2_Data_RNASeq_Cannabis_Sex.csv` dans le dossier `data` du répertoire de travail.
   
-2. **Charger et exécuter le script** : Lancez le script `SexCannalyzer.Rmd` dans RStudio ou via une ligne de commande R.
+1. **Charger et exécuter le script** : Double-cliquez sur le script `SexCannalyzer.Rmd` dans RStudio ou via une ligne de commande R. Ensuite faire knit sur le document.
 
-3. **Interpréter les graphiques et résultats** :
+2. **Interpréter les graphiques et résultats** :
    - Ouvrez les graphiques générés pour observer les niveaux d'expression de **REM16** et **FT1**. 
    - Suivez les critères d'interprétation pour déterminer le sexe de chaque échantillon :
      - **REM16 ~ 10,5 et FT1 ~ 6,5** : Femelle
      - **REM16 ~ 8,75 et FT1 exprimé** : Mâle
      - **REM16 exprimé sans FT1** : Cas problématique à vérifier
-
-### Exemple d'exécution
-Pour exécuter le script directement dans RStudio :
-   ```r
-   # Chargez le fichier RMarkdown dans RStudio, puis cliquez sur "Knit" pour générer les rapports HTML et PDF.
+    
+   
