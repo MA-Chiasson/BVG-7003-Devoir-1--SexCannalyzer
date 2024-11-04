@@ -25,7 +25,7 @@ Le script produit plusieurs types de sorties :
 ![Texte alternatif de l'image](images/FT1.png)
 
 
-3. Un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe
+3. Un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe.
 ![Texte alternatif de l'image](images/REM16 et FT1.png)
 
 1. **Tableaux transformés** pour les gènes **REM16** et **FT1** avec leurs niveaux d'expression pour chaque échantillon et sexe.
