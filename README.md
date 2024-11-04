@@ -18,14 +18,14 @@ Le but de **SexCannalyzer** est de :
 
 ## Résultats
 Le script produit plusieurs types de sorties :
-- Premièrement un graphique de l'expression du gène REM16 en fonction du sexe.
+1. Un graphique de l'expression du gène REM16 en fonction du sexe.
 ![Texte alternatif de l'image](images/REM16.png)
 
-- Deuxièmement un graphique de l'expression du gène FT1 en fonction du sexe.
+2. Un graphique de l'expression du gène FT1 en fonction du sexe.
 ![Texte alternatif de l'image](images/FT1.png)
 
 
-- Troisièment un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe
+3. Un graphique combiné de l'expression des gènes REM16 et FT1 colorié selon le sexe
 ![Texte alternatif de l'image](images/REM16+FT1.png)
 
 1. **Tableaux transformés** pour les gènes **REM16** et **FT1** avec leurs niveaux d'expression pour chaque échantillon et sexe.
