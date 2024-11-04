@@ -18,6 +18,9 @@ Le but de **SexCannalyzer** est de :
 
 ## Résultats
 Le script produit plusieurs types de sorties :
+
+![Texte alternatif de l'image](images/REM16.png)
+
 1. **Tableaux transformés** pour les gènes **REM16** et **FT1** avec leurs niveaux d'expression pour chaque échantillon et sexe.
 2. **Graphiques** montrant les niveaux d'expression de **REM16** et **FT1** en fonction du sexe des échantillons. Ces graphiques permettent de visualiser la classification des plants en mâle ou femelle.
 3. **Critères d'interprétation** :
