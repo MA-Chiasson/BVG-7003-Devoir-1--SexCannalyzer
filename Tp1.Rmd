@@ -1,0 +1,113 @@
+---
+title: "SexCannalyzer"
+author: "Marc-Antoine Chiasson"
+date: "2024-10-30"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r library, include=FALSE}
+
+library(dplyr)
+library(ggplot2)
+
+```
+
+```{r Chargement des données, include = FALSE}
+
+tab <- readRDS("data/2_Data_RNASeq_Cannabis_Sex.rds")
+
+```
+
+```{r Formatage tableau, include = FALSE}
+# Remplacement des identifiants de gènes par des noms simplifiés dans la colonne "X"
+tab$X <- tab$X %>%
+  gsub("LOC115699937", "REM16", .) %>%
+  gsub("LOC115696989", "FT1", .)
+
+```
+
+```{r tab REM16, include = FALSE}
+
+# Filtrer les données pour REM16
+rem16_data <- tab[tab$X == "REM16", ]
+
+# Transposer le tableau pour obtenir les colonnes d'expression dans un format long
+rem16_long <- data.frame(t(rem16_data[,-1]))  # Enlève la colonne gène X et transpose
+colnames(rem16_long) <- "expression"  # Renommer la colonne d'expression
+
+# Extraire les noms des colonnes (qui contiennent le sexe dans les deux derniers caractères)
+rem16_long$sample <- rownames(rem16_long)  # Ajoute les noms des échantillons
+
+# Créer une colonne pour identifier le sexe en fonction des deux derniers caractères des noms de colonnes
+rem16_long$sex <- substr(rem16_long$sample, nchar(rem16_long$sample) - 1, nchar(rem16_long$sample))
+
+```
+
+```{r graphique REM16, echo = FALSE}
+# Faire un graphique des niveaux d'expression en fonction du sexe
+library(ggplot2)
+ggplot(rem16_long, aes(x = sex, y = expression, color = sex)) +
+  geom_boxplot() + 
+  geom_jitter(width = 0.2) + 
+  labs(title = "Niveau d'expression du gène REM16 en fonction du sexe",
+       x = "Sexe",
+       y = "Niveau d'expression") +
+  theme_minimal()+
+  theme(legend.position = "none")
+
+```
+
+```{r tab FT1, include = FALSE}
+
+# Filtrer les données pour FT1
+ft1_data <- tab[tab$X == "FT1", ]
+
+# Transposer le tableau pour obtenir les colonnes d'expression dans un format long
+ft1_long <- data.frame(t(ft1_data[,-1]))  # Enlève la colonne gène X et transpose
+colnames(ft1_long) <- "expression"  # Renommer la colonne d'expression
+
+# Extraire les noms des colonnes (qui contiennent le sexe dans les deux derniers caractères)
+ft1_long$sample <- rownames(ft1_long)  # Ajoute les noms des échantillons
+
+# Créer une colonne pour identifier le sexe en fonction des deux derniers caractères des noms de colonnes
+ft1_long$sex <- substr(ft1_long$sample, nchar(ft1_long$sample) - 1, nchar(ft1_long$sample))
+```
+
+```{r graphique FT1, echo = FALSE}
+
+# Faire un graphique des niveaux d'expression en fonction du sexe
+library(ggplot2)
+ggplot(ft1_long, aes(x = sex, y = expression, color = sex)) +
+  geom_boxplot() + 
+  geom_jitter(width = 0.2) + 
+  labs(title = "Niveau d'expression du gène FT1 en fonction du sexe",
+       x = "Sexe",
+       y = "Niveau d'expression") +
+  theme_minimal() + 
+  theme(legend.position = "none")
+```
+
+
+```{r tab REM16 et FT1, include = FALSE}
+
+# Fusionner les deux tableaux
+rem16_long$gene <- "REM16"  # Ajouter une colonne pour identifier le gène
+ft1_long$gene <- "FT1"  # Ajouter une colonne pour identifier le gène
+combined_data <- rbind(rem16_long, ft1_long)
+
+```
+
+```{r graphique REM16 et FT1, echo = FALSE}
+# Créer un graphique avec ggplot2 en distinguant les gènes
+ggplot(combined_data, aes(x = interaction(sex, gene), y = expression, color = gene)) +
+  geom_boxplot() + 
+  geom_jitter(width = 0.2) + 
+  labs(title = "Niveau d'expression des gènes REM16 et FT1 en fonction du sexe",
+       x = "Sexe et Gène",
+       y = "Niveau d'expression",
+       color = "Gène") +  # Légende pour les gènes
+  theme_minimal()
+
+```
