@@ -13,7 +13,8 @@ Le but de **SexCannalyzer** est de :
 - Classifier les plants en tant que mâles ou femelles selon les critères d'expression génétique établis.
 
 ## Données d'entrée
-- **Fichier de données transcriptomiques** : Un fichier CSV contenant les données d'expression des gènes pour différents échantillons. Le fichier doit inclure une colonne nommée `X` avec les identifiants de gènes, tels que `LOC115699937` et `LOC115696989`, qui seront automatiquement renommés en **REM16** et **FT1**. Chaque colonne représente l'identifiant du génotype.
+- **Fichier CSV d'expression génique** :  Un fichier CSV contenant les données d'expression des gènes pour différents échantillons. Le fichier doit inclure une colonne nommée `X` avec les identifiants de gènes, tels que `LOC115699937` et `LOC115696989`, qui seront automatiquement renommés en **REM16** et **FT1**. Toutes les autres colonne représente l'identifiant d'un génotype.
+  
 ![Texte alternatif de l'image](images/ex_tab_csv.png)
 
 ## Résultats
