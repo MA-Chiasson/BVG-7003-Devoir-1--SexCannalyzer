@@ -11,13 +11,14 @@ output:
 
 library(dplyr)
 library(ggplot2)
+library(e1071)
 
 ```
 
 ```{r Chargement des données, include = FALSE}
 
 tab <- readRDS("data/2_Data_RNASeq_Cannabis_Sex.rds")
-
+svm_model <- readRDS("modele/svm_model.rds")
 ```
 
 ```{r Formatage tableau, include = FALSE}
@@ -100,7 +101,7 @@ combined_data <- rbind(rem16_long, ft1_long)
 ```
 
 ```{r graphique REM16 et FT1, echo = FALSE}
-# Créer un graphique avec ggplot2 en distinguant les gènes
+# Create the plot with custom x-axis labels
 ggplot(combined_data, aes(x = interaction(sex, gene), y = expression, color = gene)) +
   geom_boxplot() + 
   geom_jitter(width = 0.2) + 
@@ -108,6 +109,37 @@ ggplot(combined_data, aes(x = interaction(sex, gene), y = expression, color = ge
        x = "Sexe et Gène",
        y = "Niveau d'expression",
        color = "Gène") +  # Légende pour les gènes
-  theme_minimal()
+  theme_minimal() +
+  scale_x_discrete(labels = c("XX", "XY", "XX", "XY"))  # Manually set x-axis labels
 
 ```
+
+```{r Utilisation modele SVM, echo = FALSE}
+# Créer un tableau de prédictions avec les données de votre dataset
+rem16_values <- tab %>% filter(X == "REM16") %>% select(-X) %>% t() %>% as.data.frame()
+colnames(rem16_values) <- "REM16"
+rem16_values$Sample <- rownames(rem16_values)
+
+ft1_values <- tab %>% filter(X == "FT1") %>% select(-X) %>% t() %>% as.data.frame()
+colnames(ft1_values) <- "FT1"
+ft1_values$Sample <- rownames(ft1_values)
+
+# Fusionner les données d'expression pour les prédictions
+prediction_data <- merge(rem16_values, ft1_values, by = "Sample")
+prediction_data$REM16 <- as.numeric(prediction_data$REM16)
+prediction_data$FT1 <- as.numeric(prediction_data$FT1)
+
+# Prédire le sexe des plantes
+prediction_data$Sexe <- predict(svm_model, prediction_data[, c("REM16", "FT1")])
+
+```
+
+```{r Tableau modele, echo = FALSE}
+# Sélectionner uniquement les colonnes Sample et Sexe
+result_table <- prediction_data %>% select(Sample, Sexe)
+
+# Affichage du tableau des prédictions avec les colonnes sélectionnées
+knitr::kable(result_table, caption = "Prédictions du sexe des plantes avec le modèle SVM")
+```
+
+
