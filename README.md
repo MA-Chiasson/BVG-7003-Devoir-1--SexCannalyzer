@@ -30,7 +30,7 @@ Le script produit plusieurs types de sorties :
 ![Texte alternatif de l'image](images/REM16+FT1.png)
 
 4. Un tableau présentant le résultats d'un modèle SVM pouvant prédire le sexe en fonction des différences d'expression des deux gènes.
-
+![Texte alternatif de l'image](images/tab_modele.png)
 
 
 ## Instructions
@@ -45,9 +45,10 @@ Le script produit plusieurs types de sorties :
 
 2. **Interpréter les graphiques et résultats** :
    - Ouvrez les graphiques générés pour observer les niveaux d'expression de **REM16** et **FT1**. 
-   - Suivez les critères d'interprétation pour déterminer le sexe de chaque échantillon :
-     - **REM16 ~ 10,5 et FT1 ~ 6,5** : Femelle
-     - **REM16 ~ 8,75 et FT1 exprimé** : Mâle
-     - **REM16 exprimé sans FT1** : Cas problématique à vérifier
+     - Suivez les critères d'interprétation pour déterminer le sexe de chaque échantillon :
+       - **REM16 ~ 10,5 et FT1 ~ exprimé** : Femelle
+       - **REM16 ~ 8,75 et FT1 exprimé** : Mâle
+       - **REM16 exprimé sans FT1** : Cas problématique à vérifier
+   - Valider ces observations avec le tableau du modèle qui vous donne le sexe de chaque génotype
     
    
